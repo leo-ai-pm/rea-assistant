@@ -36,18 +36,17 @@ npm run web
 
 分析目标需要位于运行服务的电脑上。部分格式需要自行安装 Ghidra、JADX 等工具；界面不能替代这些底层依赖。
 
-## 架构
+## 工作流程
 
-```mermaid
-flowchart LR
-  UI[网页工作台] --> HTTP[本地 HTTP / 事件流]
-  HTTP --> Agent[Agent 工具循环]
-  Agent --> Model[OpenAI 兼容模型]
-  Agent --> MCP[每个会话独立的 MCP 客户端]
-  MCP --> Engine[软件分析引擎]
-  Engine --> Evidence[证据与分析结果]
-  Evidence --> UI
-```
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/workflow-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/workflow-light.svg">
+  <img alt="REA 拆解助手工作流程：提出问题，Agent 发现工具并检查权限，通过 MCP 分析，保存证据并继续推理，查看结论与导出会话。" src="assets/workflow-light.svg" width="1200">
+</picture>
+
+输入目标路径和问题后，Agent 按需选择静态分析工具。工具结果回到证据面板与推理循环，形成结论后可继续追问或导出会话。
+
+## 技术结构
 
 - `web/public/`：原生 HTML / CSS / JS，聊天与证据面板。
 - `web/server.mjs`：本地 HTTP 服务、模型配置、工具发现、权限过滤、会话持久化。
