@@ -2,7 +2,9 @@
 
 在网页中与 Agent 对话，拆解本地软件、追踪实现逻辑、查看分析证据。
 
-基于 [ChaiChai](https://github.com/hubooooooo/chaichai) 的独立二次开发版本。保留其 TypeScript 分析引擎与 MCP 工具，在此基础上增加本地网页工作台和模型调度层。**当前为 0.1 MVP，面向个人本机使用。**
+**基于 REA（Reverse Engineer Anything）逆向工程能力构建的独立开源产品。** 把软件分析、Agent 对话和证据查看放进一个网页工作台：输入本地目标路径，提出问题，跟随分析过程查看结果。
+
+由本项目维护网页交互与 Agent 调度层，分析能力沿用开源引擎。完整代码来源及贡献说明见[致谢与来源](ACKNOWLEDGEMENTS.md)。**当前为 0.1 MVP，面向个人本机使用。**
 
 ## 现在能做什么
 
@@ -12,7 +14,7 @@
 - 工具执行进度、原始证据展开查看、会话和证据 JSON 导出。
 - 默认关闭目标执行、设备修改、网络操作及目标修改工具。
 
-本项目不是现成的 RAG 系统：当前核心是模型驱动的工具调用与证据分析。向量知识库、跨项目检索和通用 Personal Agent 能力不在首版范围内。
+REA 拆解助手专注软件逆向分析：由模型选择工具、追踪线索，再结合证据解释软件的结构与逻辑。
 
 ## 本地启动
 
@@ -44,7 +46,7 @@ flowchart LR
   HTTP --> Agent[Agent 工具循环]
   Agent --> Model[OpenAI 兼容模型]
   Agent --> MCP[每个会话独立的 MCP 客户端]
-  MCP --> Engine[ChaiChai 分析引擎]
+  MCP --> Engine[REA 衍生分析引擎]
   Engine --> Evidence[证据与分析结果]
   Evidence --> UI
 ```
@@ -55,6 +57,8 @@ flowchart LR
 - `.rea-web/`：本地聊天和证据，已被 Git 忽略。
 
 网页只监听 `127.0.0.1`，校验 Host / Origin 和同源请求标识；这是单用户本地应用，**不要反向代理为公开服务**。会话明文保存在本机。分析结果及相关源码片段会发送给用户配置的模型服务。静态分析允许引擎启动其分析器或创建临时文件，并不表示完全不产生文件系统副作用。
+
+底层引擎的扩展用法见 [Agent 接入说明](docs/installation.md#supported-agents)和[完整工具目录](docs/mcp-contracts.md#generated-catalog)。这些是引擎参考文档，网页首版开放范围以本页说明为准。
 
 ## 开发与验证
 
@@ -77,10 +81,8 @@ npm run check:fast     # 上游类型与规范检查
 - 当前支持纯文本回答和原始 JSON 证据；尚未提供结构化报告排版、图谱或桌面安装包。
 - 工具范围基于上游效果元数据过滤；未声称覆盖上游全部工具或所有外部分析器。
 
-## 来源与许可
+## 开源与致谢
 
-基于 ChaiChai 提交 `74ec6d01074c7df4a0e635bb59b8fe50e5a27607`（2026-10-13）。网页工作台与 Agent 调度为本仓库新增部分，上游分析核心与原有工具保留其来源。
-
-保留 [MIT 许可证](LICENSE) 中 morluto、hubooooooo 的版权声明，以及 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 `licenses/`。原项目的安装脚本、发布脚本与开发文档仍包含上游名称/地址；本版本从源码运行，不使用上游自动安装或发布流程。
+本项目采用 [MIT 许可证](LICENSE)。REA 拆解助手的产品层由本项目维护，分析引擎来自 REA 及其衍生项目；完整继承关系、版本记录和新增工作见[致谢与来源](ACKNOWLEDGEMENTS.md)。第三方组件声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 `licenses/`。
 
 仅分析自己拥有或获得授权的软件。其他约束见 [DISCLAIMER.md](DISCLAIMER.md)。
