@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>REA 拆解助手</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <aside class="sidebar">
+      <a class="brand" href="/"
+        ><span class="logo">R</span><span>REA<small>拆解助手</small></span></a
+      ><button id="new" class="primary">＋ 新建分析</button>
+      <div class="section-label">你的工作空间</div>
+      <nav id="sessions" aria-label="分析会话"></nav>
+      <div class="sidebar-bottom">
+        <span class="local-dot"></span>本地工作空间<button id="settings">
+          模型设置 ↗
+        </button>
+      </div>
+    </aside>
+    <main>
+      <header>
+        <div>
+          <span class="muted">工作空间 / </span><span id="title">新建分析</span>
+        </div>
+        <button id="evidence-toggle">
+          证据与过程 <span id="count">0</span>
+        </button>
+      </header>
+      <section id="conversation" aria-label="对话记录">
+        <div id="welcome">
+          <div class="eyebrow">READ. EXPLORE. ANALYZE.</div>
+          <h1>拆开软件，<br />看见它的工作原理。</h1>
+          <p>告诉我你想了解什么。<br />从结构到逻辑，让每个结论都有据可查。</p>
+          <div class="suggestions">
+            <button
+              data-prompt="我想分析一个本地 Electron 应用，了解它的技术栈和模块结构。"
+            >
+              ⌘<strong>看懂一个应用</strong
+              ><span>组件、技术栈与通信方式 ↗</span></button
+            ><button
+              data-prompt="我想拆解本地网页游戏的 JavaScript，找出计分规则和核心逻辑。"
+            >
+              ⌁<strong>追踪一段逻辑</strong
+              ><span>从代码线索到运行原理 ↗</span></button
+            ><button data-prompt="我想检查本地 APK 的权限和页面结构。">
+              ▤<strong>梳理软件结构</strong><span>资源、权限与入口信息 ↗</span>
+            </button>
+          </div>
+        </div>
+        <div id="messages"></div>
+      </section>
+      <div class="composer-area">
+        <div id="status" role="status">先配置模型，即可开始分析</div>
+        <form id="composer">
+          <label class="sr-only" for="prompt">你的问题与本地目标路径</label
+          ><textarea
+            id="prompt"
+            rows="3"
+            placeholder="输入本地软件路径，聊聊你想拆解的部分…"
+          ></textarea>
+          <div class="composer-footer">
+            <span>静态分析 · 保留证据</span
+            ><button type="button" id="stop" hidden>停止</button
+            ><button type="submit" id="send" class="primary">开始分析 ↑</button>
+          </div>
+        </form>
+        <p class="footnote">
+          文件在本机分析；相关内容会发送给你配置的模型服务。只分析你有权分析的软件。
+        </p>
+      </div>
+    </main>
+    <aside id="evidence" class="evidence" hidden>
+      <div class="panel-heading">
+        <div>
+          <span class="eyebrow">EVIDENCE</span>
+          <h2>证据与过程</h2>
+        </div>
+        <button id="close-evidence" aria-label="关闭证据面板">×</button>
+      </div>
+      <p class="muted">展开工具记录，查看原始证据与分析结果。</p>
+      <button id="export">导出会话与证据 ↓</button>
+      <div id="events"><p class="empty">开始分析后，证据会出现在这里。</p></div>
+    </aside>
+    <dialog id="config">
+      <form id="config-form">
+        <div class="panel-heading">
+          <h2>连接你的模型</h2>
+          <button type="button" id="close-config" aria-label="关闭设置">
+            ×
+          </button>
+        </div>
+        <p>
+          支持带工具调用能力的 OpenAI 兼容接口。密钥仅保留在本次服务进程内存中。
+        </p>
+        <label
+          >API 基础地址<input
+            id="base-url"
+            type="url"
+            required
+            placeholder="https://api.example.com/v1" /></label
+        ><label
+          >模型名称<input
+            id="model"
+            required
+            placeholder="服务商提供的模型 ID" /></label
+        ><label
+          >API Key<input
+            id="key"
+            type="password"
+            required
+            autocomplete="off"
+            placeholder="输入 API Key"
+        /></label>
+        <p id="config-error" role="alert"></p>
+        <button class="primary" type="submit">保存配置</button>
+      </form>
+    </dialog>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
