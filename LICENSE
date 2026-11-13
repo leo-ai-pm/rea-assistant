@@ -22,3 +22,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
 REA web workspace additions: Copyright (c) 2026 leo-ai-pm, under the same MIT License.
+
+Source provenance (informational; does not alter the MIT terms above):
+The reverse-engineering tool lineage originates in morluto/rea:
+https://github.com/morluto/rea
+This repository directly incorporates the ChaiChai code baseline maintained by
+hubooooooo, including its existing modifications, from:
+https://github.com/hubooooooo/chaichai
+Baseline commit: 74ec6d01074c7df4a0e635bb59b8fe50e5a27607 (2026-10-13).
+Inherited code and modifications retain their original authorship; the REA web
+workspace additions are identified separately above.

@@ -5,9 +5,8 @@ REA 拆解助手是独立维护的软件分析产品，复用开源逆向工程�
 ## 代码来源
 
 - **REA / Reverse Engineer Anything**：[morluto/rea](https://github.com/morluto/rea)。逆向工程工具体系的原始项目，通过 CLI 与 MCP 向 Agent 提供分析能力。
-- **ChaiChai / 拆拆**：[hubooooooo/chaichai](https://github.com/hubooooooo/chaichai)。本仓库直接采用的代码基线，提交为 `74ec6d01074c7df4a0e635bb59b8fe50e5a27607`（2026-10-13）。其代码保留 REA 的技能、配置与引擎结构，以及 morluto 的版权声明；本项目同时继承其中的分析实现、中文使用说明、安装适配和其他既有改动。
 
-继承关系为：REA → ChaiChai → REA 拆解助手。本项目未对前两个项目之间的全部差异逐项审计，不将继承代码或中间项目的改动声明为本项目原创。
+本仓库的具体代码基线、版本与版权记录集中保留在 [LICENSE](LICENSE) 中。
 
 ## 本项目新增工作
 
@@ -22,6 +21,6 @@ REA 拆解助手是独立维护的软件分析产品，复用开源逆向工程�
 
 ## 许可证与历史标识
 
-保留 [LICENSE](LICENSE) 中 morluto、hubooooooo 的版权声明，以及本项目网页新增部分的声明。第三方声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 `licenses/`。
+原有代码和本项目新增部分的版权声明均保留在 [LICENSE](LICENSE) 中。第三方声明见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 `licenses/`。
 
-底层包名、CLI 名称以及部分安装、发布脚本和开发文档仍使用 ChaiChai 或 REA 的历史名称与地址，以保留运行兼容性和来源信息。本产品当前从源码启动，不使用上游的自动安装或发布流程，也不代表上游官方发行版。
+底层包名、CLI 名称以及部分安装、发布脚本和开发文档仍保留上游的历史名称与地址，以保留运行兼容性和来源信息。本产品当前从源码启动，不使用上游的自动安装或发布流程，也不代表上游官方发行版。
